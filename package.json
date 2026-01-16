@@ -1,5 +1,5 @@
 {
-  "name": "woonuxt",
+  "name": "design_convergence",
   "private": true,
   "scripts": {
     "build": "nuxt build",
