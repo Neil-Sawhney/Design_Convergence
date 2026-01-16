@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import ProductCard from '~/components/ProductCard.vue';
 import { categories } from '~/data/catalog';
 
-const category = categories.find((item) => item.id === 'apple-ii');
+const category = categories.find((item) => item.id === 'onewheel-accessories');
 </script>
 
 <template>

@@ -8,6 +8,9 @@ const props = defineProps<{
 const selectedVariant = ref(0);
 const activeVariant = computed(() => props.product.variants?.[selectedVariant.value]);
 const selectedImage = ref(0);
+const displayPrice = computed(() =>
+  props.product.variants ? activeVariant.value?.price : props.product.price,
+);
 
 const activeImages = computed(() => {
   if (props.product.variants) {
@@ -28,6 +31,7 @@ watch(
 <template>
   <article class="card">
     <h3>{{ product.name }}</h3>
+    <p class="price-line" v-if="displayPrice">{{ displayPrice }}</p>
     <p class="description">{{ product.description }}</p>
     <ul v-if="product.features?.length" class="feature-list">
       <li v-for="feature in product.features" :key="feature">{{ feature }}</li>
@@ -70,7 +74,6 @@ watch(
       <div class="variant-list">
         <div class="variant">
           <div class="variant-text">
-            <span class="variant-label">Selected variant</span>
             <span class="price">{{ activeVariant?.price }}</span>
           </div>
           <a class="button" :href="activeVariant?.buyUrl" rel="noopener" target="_blank">
@@ -95,15 +98,23 @@ watch(
   background: #12141a;
   border: 1px solid #20242e;
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  max-width: 380px;
+  width: 100%;
 }
 
 .description {
   color: #b1bac9;
   margin: 0;
+}
+
+.price-line {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.05rem;
 }
 
 .feature-list {
@@ -132,15 +143,16 @@ watch(
   border-radius: 16px;
   border: 1px solid #20242e;
   background: #0f1218;
-  aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
-  overflow: hidden;
+  padding: 0.5rem;
+  min-height: 200px;
 }
 
 .hero-image {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 240px;
   object-fit: contain;
 }
 

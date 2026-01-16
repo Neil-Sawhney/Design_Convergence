@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ProductCard from '~/components/ProductCard.vue';
 import { categories } from '~/data/catalog';
 
 const wideLogo = new URL('../assets/wide_logo.webp', import.meta.url).href;
@@ -8,10 +9,19 @@ const wideLogo = new URL('../assets/wide_logo.webp', import.meta.url).href;
   <main class="page">
     <header class="hero">
       <img class="logo" :src="wideLogo" alt="Design Convergence logo" />
-      <p class="eyebrow">Welcome to our store</p>
-      <h1>Design Convergence</h1>
-      <p class="subtitle">Browse our latest products.</p>
+      <p class="eyebrow">Welcome to our store!</p>
     </header>
+
+    <nav class="category-nav">
+      <NuxtLink
+        v-for="category in categories"
+        :key="category.id"
+        class="button ghost"
+        :to="category.route"
+      >
+        {{ category.title }}
+      </NuxtLink>
+    </nav>
 
     <section class="category" v-for="category in categories" :key="category.id">
       <div class="category-header">

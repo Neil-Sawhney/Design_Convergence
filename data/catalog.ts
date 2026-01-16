@@ -36,8 +36,20 @@ const relio4ft2 = new URL('../assets/products/Relio/4 ft/2.webp', import.meta.ur
 const relio4ft3 = new URL('../assets/products/Relio/4 ft/3.webp', import.meta.url).href;
 const relio6ft0 = new URL('../assets/products/Relio/6 ft/0_6ft.webp', import.meta.url).href;
 const relio6ft1 = new URL('../assets/products/Relio/6 ft/1_6ft.webp', import.meta.url).href;
+const relio6ft2 = new URL('../assets/products/Relio/6 ft/2_6ft.webp', import.meta.url).href;
 const relio6ft3 = new URL('../assets/products/Relio/6 ft/3_6ft.webp', import.meta.url).href;
-const appleMain = new URL('../assets/products/Apple II/main.webp', import.meta.url).href;
+const appleLidImage = new URL('../assets/products/Apple II/lid.webp', import.meta.url).href;
+const appleLidWithBadgeImage = new URL(
+  '../assets/products/Apple II/lid_with_badge.webp',
+  import.meta.url,
+).href;
+const appleLidWithBadgePlusImage = new URL(
+  '../assets/products/Apple II/lid_with_badge_plus.webp',
+  import.meta.url,
+).href;
+const appleBadge = new URL('../assets/products/AppleII Badge/appleII_badge.webp', import.meta.url).href;
+const appleBadgePlus = new URL('../assets/products/Apple II+ Badge/appleII+_badge.webp', import.meta.url).href;
+const owPintMain = new URL('../assets/products/OW_pint_plug/main.webp', import.meta.url).href;
 const owPintPhoto1 = new URL('../assets/products/OW_pint_plug/photo1_smooth.webp', import.meta.url).href;
 const owPintPhoto2 = new URL('../assets/products/OW_pint_plug/photo2_smooth.webp', import.meta.url).href;
 
@@ -63,11 +75,12 @@ const relioProduct: CatalogProduct = {
     {
       id: 'relio-6ft',
       label: '6 ft',
-      price: '$6.98',
+      price: '$8.98',
       buyUrl: 'https://buy.stripe.com/9B6eV60rW04z3KZg2F8g004',
       images: [
         { src: relio6ft0, alt: 'Relio Cable Organizer 6 ft main view' },
         { src: relio6ft1, alt: 'Relio Cable Organizer 6 ft detail' },
+        { src: relio6ft2, alt: 'Relio Cable Organizer 6 ft alternate view' },
         { src: relio6ft3, alt: 'Relio Cable Organizer 6 ft packaging' },
       ],
     },
@@ -89,6 +102,7 @@ const owPintPlug: CatalogProduct = {
   price: '$11.73',
   buyUrl: 'https://buy.stripe.com/eVqeV64Ic18D3KZ2bP8g001',
   images: [
+    { src: owPintMain, alt: 'Onewheel Pint Plug main view' },
     { src: owPintPhoto1, alt: 'Onewheel Pint Plug detail view' },
     { src: owPintPhoto2, alt: 'Onewheel Pint Plug alternate view' },
   ],
@@ -97,7 +111,6 @@ const owPintPlug: CatalogProduct = {
     'Tethered design keeps the plug attached and easy to access.',
     'Simple three-step installation: loosen screws, insert tab, tighten.',
     'Durable silicone withstands harsh off-road riding conditions.',
-    'Custom-molded for a snug seal and reliable protection.',
   ],
 };
 
@@ -105,39 +118,83 @@ const appleLid: CatalogProduct = {
   id: 'apple-ii-lid',
   name: 'Transparent Apple II Computer Lid',
   description:
-    'Two variants available: with badge or without badge. Choose the option that fits your build.',
-  price: 'From $0.00',
+    'Choose a lid with Apple II badge, lid with Apple II+ badge, or lid only.',
+  price: 'From $100.00',
   variants: [
     {
       id: 'apple-ii-with-badge',
-      label: 'With badge',
-      price: '$0.00',
-      buyUrl: 'https://buy.stripe.com/eVq5kw1w018D4P38Ad8g003',
-      images: [{ src: appleMain, alt: 'Transparent Apple II Computer Lid with badge' }],
+      label: 'Lid and Apple II badge',
+      price: '$110.00',
+      buyUrl: 'https://buy.stripe.com/cNi5kwdeI6sXa9n8Ad8g006',
+      images: [
+        { src: appleLidWithBadgeImage, alt: 'Transparent Apple II Computer Lid with badge' },
+      ],
     },
     {
-      id: 'apple-ii-without-badge',
-      label: 'Without badge',
-      price: '$0.00',
-      buyUrl: 'https://buy.stripe.com/14A3coeiM3gL6Xb6s58g002',
-      images: [{ src: appleMain, alt: 'Transparent Apple II Computer Lid without badge' }],
+      id: 'apple-ii-with-badge-plus',
+      label: 'Lid and Apple II+ badge',
+      price: '$110.00',
+      buyUrl: 'https://buy.stripe.com/fZu3cob6A3gLdlzg2F8g007',
+      images: [
+        {
+          src: appleLidWithBadgePlusImage,
+          alt: 'Transparent Apple II Computer Lid with Apple II+ badge',
+        },
+      ],
+    },
+    {
+      id: 'apple-ii-no-badge',
+      label: 'Lid only',
+      price: '$100.00',
+      buyUrl: 'https://buy.stripe.com/cNi5kwdeI6sXa9n8Ad8g006',
+      images: [{ src: appleLidImage, alt: 'Transparent Apple II Computer Lid without badge' }],
+    },
+  ],
+};
+
+const appleBadgeProduct: CatalogProduct = {
+  id: 'apple-ii-badge',
+  name: 'Apple II Badge',
+  description: 'Standalone badge for Apple II builds, available in two versions.',
+  price: 'From $10.00',
+  variants: [
+    {
+      id: 'apple-ii-badge-standard',
+      label: 'Badge',
+      price: '$10.00',
+      buyUrl: 'https://buy.stripe.com/eVq8wI5Mg8B5epD7w98g009',
+      images: [{ src: appleBadge, alt: 'Apple II badge' }],
+    },
+    {
+      id: 'apple-ii-badge-plus',
+      label: 'Apple II+ badge',
+      price: '$10.00',
+      buyUrl: 'https://buy.stripe.com/dRm7sEa2w9F96Xb9Eh8g008',
+      images: [{ src: appleBadgePlus, alt: 'Apple II+ badge version' }],
     },
   ],
 };
 
 export const categories: CatalogCategory[] = [
   {
-    id: 'apple-ii',
-    title: 'Apple II Computer Lids',
+    id: 'vintage-computer-accessories',
+    title: 'Vintage Computer Accessories',
     description: 'Transparent lids and accessories for Apple II builds.',
-    route: '/categories/apple-ii',
-    products: [appleLid],
+    route: '/categories/vintage-computer-accessories',
+    products: [appleLid, appleBadgeProduct],
   },
   {
-    id: 'accessories',
-    title: 'Ride and Cable Accessories',
-    description: 'Functional accessories for cables and Onewheel gear.',
-    route: '/categories/accessories',
-    products: [relioProduct, owPintPlug],
+    id: 'onewheel-accessories',
+    title: 'Onewheel Accessories',
+    description: 'Protective add-ons for your Onewheel ride.',
+    route: '/categories/onewheel-accessories',
+    products: [owPintPlug],
+  },
+  {
+    id: 'home-accessories',
+    title: 'Home Accessories',
+    description: 'Cable organization and practical everyday add-ons.',
+    route: '/categories/home-accessories',
+    products: [relioProduct],
   },
 ];
