@@ -26,7 +26,6 @@ const wideLogo = new URL('../assets/wide_logo.webp', import.meta.url).href;
     <section class="category" v-for="category in categories" :key="category.id">
       <div class="category-header">
         <div>
-          <p class="category-eyebrow">Category</p>
           <h2>{{ category.title }}</h2>
           <p class="category-description">{{ category.description }}</p>
         </div>

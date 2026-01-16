@@ -168,6 +168,7 @@ watch(activeImages, (images) => {
   place-items: center;
   padding: 0.5rem;
   min-height: 200px;
+  box-sizing: border-box;
 }
 
 .hero-image {
@@ -194,6 +195,7 @@ watch(activeImages, (images) => {
   place-items: center;
   overflow: hidden;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .thumb img {
@@ -267,6 +269,7 @@ watch(activeImages, (images) => {
 @media (max-width: 720px) {
   .card {
     max-width: 100%;
+    padding: 0.85rem 0.9rem;
   }
 
   .hero-image {
@@ -279,7 +282,7 @@ watch(activeImages, (images) => {
   }
 
   .hero-media {
-    min-height: 180px;
+    min-height: 160px;
   }
 }
 </style>

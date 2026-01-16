@@ -144,6 +144,10 @@ a {
   --category-accent: rgba(45, 212, 191, 0.08);
 }
 
+.category-header h2 {
+  margin: 0 0 0.35rem;
+}
+
 .category-eyebrow {
   color: #98a2b3;
   text-transform: uppercase;
@@ -223,6 +227,20 @@ a {
 
   .category-header {
     padding: 0.9rem 1rem;
+    align-items: stretch;
+  }
+
+  .category-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .category-description {
+    font-size: 0.95rem;
+  }
+
+  .category-header > .button {
+    width: 100%;
+    justify-content: center;
   }
 
   .category-nav {
