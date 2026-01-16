@@ -1,0 +1,17 @@
+{
+  "name": "woonuxt",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --host 0.0.0.0",
+    "dev:ssl": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --host 0.0.0.0 --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "serve": "nuxi generate && npx serve .output/public -l 8080"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "nuxt": "^4.2.2"
+  }
+}
