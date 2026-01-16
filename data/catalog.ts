@@ -30,28 +30,23 @@ export type CatalogCategory = {
   products: CatalogProduct[];
 };
 
-const relio4ft0 = new URL('../assets/products/Relio/4 ft/0.webp', import.meta.url).href;
-const relio4ft1 = new URL('../assets/products/Relio/4 ft/1.webp', import.meta.url).href;
-const relio4ft2 = new URL('../assets/products/Relio/4 ft/2.webp', import.meta.url).href;
-const relio4ft3 = new URL('../assets/products/Relio/4 ft/3.webp', import.meta.url).href;
-const relio6ft0 = new URL('../assets/products/Relio/6 ft/0_6ft.webp', import.meta.url).href;
-const relio6ft1 = new URL('../assets/products/Relio/6 ft/1_6ft.webp', import.meta.url).href;
-const relio6ft2 = new URL('../assets/products/Relio/6 ft/2_6ft.webp', import.meta.url).href;
-const relio6ft3 = new URL('../assets/products/Relio/6 ft/3_6ft.webp', import.meta.url).href;
-const appleLidImage = new URL('../assets/products/Apple II/lid.webp', import.meta.url).href;
-const appleLidWithBadgeImage = new URL(
-  '../assets/products/Apple II/lid_with_badge.webp',
-  import.meta.url,
-).href;
-const appleLidWithBadgePlusImage = new URL(
-  '../assets/products/Apple II/lid_with_badge_plus.webp',
-  import.meta.url,
-).href;
-const appleBadge = new URL('../assets/products/AppleII Badge/appleII_badge.webp', import.meta.url).href;
-const appleBadgePlus = new URL('../assets/products/Apple II+ Badge/appleII+_badge.webp', import.meta.url).href;
-const owPintMain = new URL('../assets/products/OW_pint_plug/main.webp', import.meta.url).href;
-const owPintPhoto1 = new URL('../assets/products/OW_pint_plug/photo1_smooth.webp', import.meta.url).href;
-const owPintPhoto2 = new URL('../assets/products/OW_pint_plug/photo2_smooth.webp', import.meta.url).href;
+const productAsset = (path: string) => `/products/${path}`;
+const relio4ft0 = productAsset('Relio/4 ft/0.webp');
+const relio4ft1 = productAsset('Relio/4 ft/1.webp');
+const relio4ft2 = productAsset('Relio/4 ft/2.webp');
+const relio4ft3 = productAsset('Relio/4 ft/3.webp');
+const relio6ft0 = productAsset('Relio/6 ft/0_6ft.webp');
+const relio6ft1 = productAsset('Relio/6 ft/1_6ft.webp');
+const relio6ft2 = productAsset('Relio/6 ft/2_6ft.webp');
+const relio6ft3 = productAsset('Relio/6 ft/3_6ft.webp');
+const appleLidImage = productAsset('Apple II/lid.webp');
+const appleLidWithBadgeImage = productAsset('Apple II/lid_with_badge.webp');
+const appleLidWithBadgePlusImage = productAsset('Apple II/lid_with_badge_plus.webp');
+const appleBadge = productAsset('AppleII Badge/appleII_badge.webp');
+const appleBadgePlus = productAsset('Apple II+ Badge/appleII+_badge.webp');
+const owPintMain = productAsset('OW_pint_plug/main.webp');
+const owPintPhoto1 = productAsset('OW_pint_plug/photo1_smooth.webp');
+const owPintPhoto2 = productAsset('OW_pint_plug/photo2_smooth.webp');
 
 const relioProduct: CatalogProduct = {
   id: 'relio-cable-organizer',

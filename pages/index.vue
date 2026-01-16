@@ -2,7 +2,7 @@
 import ProductCard from '~/components/ProductCard.vue';
 import { categories } from '~/data/catalog';
 
-const wideLogo = new URL('../assets/wide_logo.webp', import.meta.url).href;
+const wideLogo = '/wide_logo.webp';
 </script>
 
 <template>

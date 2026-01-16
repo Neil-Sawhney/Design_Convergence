@@ -117,6 +117,7 @@ watch(activeImages, (images) => {
   gap: 0.55rem;
   max-width: 380px;
   width: 100%;
+  box-sizing: border-box;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
