@@ -19,6 +19,11 @@ const activeImages = computed(() => {
   return props.product.images ?? [];
 });
 
+const selectVariant = (index: number) => {
+  selectedVariant.value = index;
+  selectedImage.value = 0;
+};
+
 watch(
   () => [props.product.id, selectedVariant.value],
   () => {
@@ -26,12 +31,18 @@ watch(
   },
   { immediate: true },
 );
+
+watch(activeImages, (images) => {
+  if (selectedImage.value >= images.length) {
+    selectedImage.value = 0;
+  }
+});
 </script>
 
 <template>
   <article class="card">
     <h3>{{ product.name }}</h3>
-    <p class="price-line" v-if="displayPrice">{{ displayPrice }}</p>
+    <p class="price-line" v-if="displayPrice && !product.variants">{{ displayPrice }}</p>
     <p class="description">{{ product.description }}</p>
     <ul v-if="product.features?.length" class="feature-list">
       <li v-for="feature in product.features" :key="feature">{{ feature }}</li>
@@ -40,9 +51,11 @@ watch(
       <div class="hero-media" v-if="activeImages.length">
         <img
           class="hero-image"
+          :key="activeImages[selectedImage]?.src"
           :src="activeImages[selectedImage]?.src"
           :alt="activeImages[selectedImage]?.alt"
           loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="thumbnail-row" v-if="activeImages.length > 1">
@@ -58,7 +71,7 @@ watch(
         </button>
       </div>
     </div>
-    <div v-if="product.variants">
+    <div class="card-actions" v-if="product.variants">
       <div class="variant-selector">
         <button
           v-for="(variant, index) in product.variants"
@@ -66,7 +79,7 @@ watch(
           class="variant-chip"
           :class="{ active: selectedVariant === index }"
           type="button"
-          @click="selectedVariant = index"
+          @click="selectVariant(index)"
         >
           {{ variant.label }}
         </button>
@@ -82,7 +95,7 @@ watch(
         </div>
       </div>
     </div>
-    <div v-else>
+    <div class="card-actions" v-else>
       <div class="row">
         <span class="price">{{ product.price }}</span>
         <a class="button" :href="product.buyUrl" rel="noopener" target="_blank">
@@ -98,12 +111,13 @@ watch(
   background: #12141a;
   border: 1px solid #20242e;
   border-radius: 16px;
-  padding: 1.1rem;
+  padding: 0.9rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.55rem;
   max-width: 380px;
   width: 100%;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 .description {
@@ -114,15 +128,15 @@ watch(
 .price-line {
   margin: 0;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .feature-list {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.1rem;
   color: #b1bac9;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .row {
@@ -135,7 +149,14 @@ watch(
 .media {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.55rem;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .hero-media {
@@ -186,10 +207,11 @@ watch(
   box-shadow: 0 0 0 1px #6366f1 inset;
 }
 
+
 .variant-selector {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .variant-chip {
@@ -197,9 +219,15 @@ watch(
   border: 1px solid #2a2f3b;
   background: transparent;
   color: #e7e9ee;
-  padding: 0.35rem 0.9rem;
+  padding: 0.28rem 0.75rem;
   font-weight: 600;
   cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.variant-chip:hover {
+  border-color: rgba(45, 212, 191, 0.45);
+  background: rgba(45, 212, 191, 0.04);
 }
 
 .variant-chip.active {
@@ -210,7 +238,7 @@ watch(
 .variant-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.55rem;
   width: 100%;
 }
 
@@ -218,7 +246,7 @@ watch(
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .variant-text {
@@ -233,6 +261,25 @@ watch(
 
 .price {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 720px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .hero-image {
+    max-height: none;
+  }
+
+  .thumb {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hero-media {
+    min-height: 180px;
+  }
 }
 </style>
