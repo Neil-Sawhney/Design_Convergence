@@ -1,12 +1,13 @@
 export default defineNuxtConfig({
+  css: ['~/assets/site.css'],
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
-      title: 'Simple Static Store',
+      title: 'Design Convergence',
       meta: [
-        { name: 'description', content: 'A minimal, fully static store with Stripe Payment Links.' },
+        { name: 'description', content: 'An assortment of well-designed products.' },
       ],
-      link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+      link: [{ rel: 'icon', href: '/favicon.webp', type: 'image/webp' }],
     },
   },
   nitro: {
